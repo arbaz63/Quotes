@@ -13,7 +13,9 @@ const Form = ({handleAddItem}) => {
 
         txt:{
             width:'98%',
-            height:'45px'
+            height:'45px',
+            borderRadius:'5px',
+            fontWeight:'bolder',
         },
         btn:{
             width:'100%',
