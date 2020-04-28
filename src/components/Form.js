@@ -21,7 +21,7 @@ const Form = ({handleAddItem}) => {
             padding:'15px',
             fontWeight:'bolder',
             borderRadius:'5px',
-            fontFamily: 'Comic Sans MS, Comic Sans, cursive'
+            fontFamily: 'Merienda One'
 
         }
     }))
@@ -34,7 +34,7 @@ const Form = ({handleAddItem}) => {
                                 
                                 </Grid>
                                 <Grid item xs={3}>
-                                    <button style={{fontFamily: 'Comic Sans MS, Comic Sans, cursive',width:'100%',border:'0.5px solid', fontWeight:'bolder',borderRadius:'5px'}}
+                                    <button style={{fontFamily: 'Merienda One',width:'100%',border:'0.5px solid', fontWeight:'bolder',borderRadius:'5px'}}
                                     onClick={()=>fire.auth().signOut()}><i className="fa fa-user" aria-hidden="true"style={{padding:'10px'}}></i>Logout</button>
                                 </Grid>
                         
