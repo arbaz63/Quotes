@@ -1,7 +1,7 @@
 import React from 'react'
 import {TextField,Button,makeStyles,Grid} from '@material-ui/core'
 import {fire} from '../config/Fire'
-const Form = ({handleAddItem,name}) => {
+const Form = ({handleAddItem}) => {
     const [item,setItem]=React.useState('')
     const addItem=(e)=>{
         e.preventDefault()
@@ -32,7 +32,7 @@ const Form = ({handleAddItem,name}) => {
             <Grid container spacing={2}>
                 
                                 <Grid item xs={9}>
-                                     <p style={{color:'#219CB2',marginLeft:'15px'}}>{name&&name}</p>
+                                
                                 </Grid>
                                 <Grid item xs={3}>
                                     <button style={{fontFamily: 'Merienda One',width:'100%',border:'0.5px solid', fontWeight:'bolder',borderRadius:'5px'}}
