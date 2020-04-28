@@ -19,7 +19,7 @@ export const Login = () => {
     const classes=useStyles()
     //google login
     const openGoogleLoginPopup=()=>{
-        return fire.auth().signInWithPopup(googleAuthProvider)
+        return fire.auth().signInWithRedirect(googleAuthProvider)
     }
     //facebook login
     const openFacebookLoginPopup=()=>{
