@@ -19,28 +19,28 @@ export const Login = () => {
     const classes=useStyles()
     //google login
     const openGoogleLoginPopup=()=>{
-        return fire.auth().signInWithRedirect(googleAuthProvider)
+        return fire.auth().signInWithPopup(googleAuthProvider)
     }
     //facebook login
     const openFacebookLoginPopup=()=>{
-        return fire.auth().signInWithRedirect(facebookAuthProvider)
+        return fire.auth().signInWithPopup(facebookAuthProvider)
     }
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
                 <Grid container spacing={1}>
-                    <Grid item xs={12}style={{marginBottom:'10px',fontFamily: 'Comic Sans MS, Comic Sans, cursive',display:'flex',justifyContent:'center',fontWeight:'900',fontSize:'15px'}}>
+                    <Grid item xs={12}style={{marginBottom:'10px',fontFamily: 'Merienda One',display:'flex',justifyContent:'center',fontWeight:'900',fontSize:'15px'}}>
                         Sign in to add Quotes
                     </Grid>
                     <Grid item xs={12}style={{display:'flex',justifyContent:'center'}}>
                         <Button onClick={openGoogleLoginPopup}
-                        style={{fontFamily: 'Comic Sans MS, Comic Sans, cursive',background:'white',width:'100%',border:'0.5px solid',padding:'10px 10px',fontWeight:'900',fontSize:'10px'}}>
+                        style={{fontFamily: 'Merienda One',background:'white',width:'100%',border:'0.5px solid',padding:'10px 10px',fontWeight:'900',fontSize:'10px'}}>
                                 <i className="fab fa-google"style={{padding:'5px',color:'blue',fontSize:'15px'}}></i> 
                                  Sign in with Google
                         </Button>
                     </Grid>
                     <Grid item xs={12}style={{display:'flex',justifyContent:'center'}}>
-                        <Button onClick={openFacebookLoginPopup}style={{fontFamily: 'Comic Sans MS, Comic Sans, cursive',color:'white',background:'blue',width:'100%',border:'0.5px solid',padding:'10px 10px',fontWeight:'900',fontSize:'10px'}}>
+                        <Button onClick={openFacebookLoginPopup}style={{fontFamily: 'Merienda One',color:'white',background:'blue',width:'100%',border:'0.5px solid',padding:'10px 10px',fontWeight:'900',fontSize:'10px'}}>
                                 <i className="fab fa-facebook"style={{padding:'5px',color:'white',fontSize:'15px'}}></i> 
                                  Sign in with Facebook
                         </Button>
