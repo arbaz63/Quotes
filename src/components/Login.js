@@ -23,7 +23,7 @@ export const Login = () => {
     }
     //facebook login
     const openFacebookLoginPopup=()=>{
-        return fire.auth().signInWithPopup(facebookAuthProvider)
+        return fire.auth().signInWithRedirect(facebookAuthProvider)
     }
     return (
         <div className={classes.root}>
