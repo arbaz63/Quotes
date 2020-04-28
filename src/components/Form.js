@@ -22,8 +22,8 @@ const Form = ({handleAddItem}) => {
             padding:'15px',
             fontWeight:'bolder',
             borderRadius:'5px',
-            fontFamily: 'Merienda One'
-
+            fontFamily: 'Merienda One',
+            background:'none'
         }
     }))
     const classes=styles()
