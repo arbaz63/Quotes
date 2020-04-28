@@ -174,7 +174,7 @@ function App() {
         isAuthenticated?
         <div className='content'>
           
-          <Form handleAddItem={handleAddItem} name={fire.auth().currentUser.displayName}/>
+          <Form handleAddItem={handleAddItem} />
           <List items={items} remove={remove}/>
         </div>:
                <Login />
