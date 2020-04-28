@@ -1,7 +1,7 @@
 import React from 'react'
 import {TextField,Button,makeStyles,Grid} from '@material-ui/core'
 import {fire} from '../config/Fire'
-const Form = ({handleAddItem}) => {
+const Form = ({handleAddItem,name}) => {
     const [item,setItem]=React.useState('')
     const addItem=(e)=>{
         e.preventDefault()
@@ -13,9 +13,8 @@ const Form = ({handleAddItem}) => {
 
         txt:{
             width:'98%',
-            height:'45px',
-            borderRadius:'5px',
-            fontWeight:'bolder',
+            
+            height:'45px'
         },
         btn:{
             width:'100%',
@@ -25,7 +24,6 @@ const Form = ({handleAddItem}) => {
             fontWeight:'bolder',
             borderRadius:'5px',
             fontFamily: 'Merienda One',
-            background:'none'
         }
     }))
     const classes=styles()
@@ -34,7 +32,7 @@ const Form = ({handleAddItem}) => {
             <Grid container spacing={2}>
                 
                                 <Grid item xs={9}>
-                                
+                                     <p style={{color:'#219CB2',marginLeft:'15px'}}>{name&&name}</p>
                                 </Grid>
                                 <Grid item xs={3}>
                                     <button style={{fontFamily: 'Merienda One',width:'100%',border:'0.5px solid', fontWeight:'bolder',borderRadius:'5px'}}
@@ -57,7 +55,7 @@ const Form = ({handleAddItem}) => {
                                 autoFocus />
                         </Grid>
                         <Grid item xs={2}>
-                            <button className={classes.btn}name='add'>Add</button>
+                            <Button className={classes.btn}name='add'>Add</Button>
                         </Grid>
                     </Grid>
                     
