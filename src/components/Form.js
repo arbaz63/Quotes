@@ -55,7 +55,7 @@ const Form = ({handleAddItem}) => {
                                 autoFocus />
                         </Grid>
                         <Grid item xs={2}>
-                            <Button className={classes.btn}name='add'>Add</Button>
+                            <button className={classes.btn}name='add'>Add</button>
                         </Grid>
                     </Grid>
                     
