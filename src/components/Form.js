@@ -13,6 +13,7 @@ const Form = ({handleAddItem}) => {
 
         txt:{
             width:'98%',
+            height:'45px'
         },
         btn:{
             width:'100%',
@@ -44,12 +45,12 @@ const Form = ({handleAddItem}) => {
                     
                     <Grid item container xs={12} >
                         <Grid item xs={10}>
-                            <TextField className={classes.txt}
+                            <input className={classes.txt}
                                 id="outlined-basic"
                                 value={item}
                                 onChange={(e)=>setItem(e.target.value)}
                                 variant="outlined"
-                                label="Add Quote" 
+                                placeholder="Add Quote" 
                                 name='add' 
                                 autoFocus />
                         </Grid>
