@@ -138,7 +138,7 @@ function App() {
       width:'100%',
       fontWeight:'900',
       color:'red',
-      fontFamily: 'Comic Sans MS, Comic Sans, cursive'
+      fontFamily: 'Merienda One'
     }
   }))
   const classes=useStyles()
@@ -152,10 +152,10 @@ function App() {
                 <img src={randomPic&&randomPic} className={classes.img}/>
               </Grid>
               <Grid item xs={10}>  
-                <Typography gutterBottom style={{fontFamily: 'Comic Sans MS, Comic Sans, cursive'}}>
+                <Typography gutterBottom style={{fontFamily: 'Merienda One'}}>
                   {randomName}
                 </Typography>
-                <Typography gutterBottom variant="h6" style={{wordWrap:'break-word',fontFamily: 'Comic Sans MS, Comic Sans, cursive'}} >
+                <Typography gutterBottom variant="h6" style={{wordWrap:'break-word',fontFamily: 'Merienda One'}} >
                   <i className="fa fa-quote-left fa-xs "style={{color:'gray',padding:'10px'}} aria-hidden="true"></i> 
                     {randomFromAll}
                   <i className="fa fa-quote-right fa-xs "style={{color:'gray',padding:'10px'}} aria-hidden="true"></i>
