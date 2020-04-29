@@ -5,8 +5,11 @@ const Form = ({handleAddItem,name}) => {
     const [item,setItem]=React.useState('')
     const addItem=(e)=>{
         e.preventDefault()
-        handleAddItem(item)
-        setItem('')
+        if(item)
+        {
+            handleAddItem(item)
+            setItem('')
+        }
     }
     //material ui styles
     const styles=makeStyles((theme)=>({
