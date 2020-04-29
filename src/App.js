@@ -16,9 +16,11 @@ function App() {
   const [randomName,setRandomName]=useState('Arbaz Sheraz')
   const [indexOfRandom,setIndexOfRandom]=useState(0)
   const [randomPic,setRandomPic]=useState(image)
+  const [randomItems,setRandomItems]=useState([])
   const [isAuthenticated,setIsAuthenticated]=useState(false)
   const [views,setViews]=useState(0)
   const [showLatest,setShowLatest]=useState(false)
+  const [search,setSearch]=useState('')
   const date=moment().toString()
   //getting items from firebase
   useEffect(()=>{
@@ -47,7 +49,6 @@ function App() {
       })
       setAllItems(array)  
     })
-   
   },[isAuthenticated])
   //for views
   useEffect(()=>{
@@ -81,26 +82,33 @@ function App() {
     //matching index with all items
     const indexOfAllItems=allItems.findIndex((all) => all.item === items[index].item)
     //also removing from main collection
-    database.collection('allUsersData').doc(allItems[indexOfAllItems].id).delete()
-    //delete from all items
-    allItems.splice(indexOfAllItems,1)
-    setAllItems([...allItems])
+    if(indexOfAllItems!==-1)
+    {
+      
+      database.collection('allUsersData').doc(allItems[indexOfAllItems].id).delete()
+      //delete from all items
+      allItems.splice(indexOfAllItems,1)
+      setAllItems([...allItems])
+    }
     //delete from user's item
     items.splice(index,1)
     setItems([...items])
   }
    //random task
    const randomQuote=()=>{
-    let index=Math.floor(Math.random()* allItems.length)
-    if(allItems.length)
+     setRandomItems(allItems)
+    let index=Math.floor(Math.random()* randomItems.length)
+    if(randomItems.length)
     {
-      const opt=allItems[index].item
-      const name=allItems[index].name
-      const pic=allItems[index].img
+      const opt=randomItems[index].item
+      const name=randomItems[index].name
+      const pic=randomItems[index].img
       setRandomPic(pic)
       setIndexOfRandom(index)
       setRandomFromAll(opt)
       setRandomName(name)
+      randomItems.splice(index,1)
+      setRandomItems([...randomItems])
     }
 }
   //Show latest quotes button
@@ -159,9 +167,46 @@ function App() {
   //   })
   // },[])
   const classes=useStyles()
+                                        //admin panel
+  const deleteFromAllItems=(id)=>{
+    database.collection('allUsersData').doc(id).delete()
+  }
+                                        //for searching
+  const searched=allItems.filter((item)=>{
+    return item.item.toLowerCase().indexOf(search.toLowerCase()) !==-1
+  })
   return (
     <div className='app wrap'>
-      
+                                      {/* admin panel */}
+        
+
+      <div>
+                  {/* search bar */}
+       
+          <input type="text" name="search" id=""value={search} onChange={(e)=>setSearch(e.target.value)}/>
+        {/* {
+          searched.sort((a,b)=>{
+            return a.date<b.date?1:-1
+          }).map((item)=>{
+          return <div>
+          <h4>{item.name}</h4>
+          <h4>{item.email}</h4>
+            <h4>{item.item}</h4>
+            <button onClick={()=>deleteFromAllItems(item.id)}>Delete</button>
+          </div>
+          })
+        } */}
+      </div>
+
+
+
+
+
+
+
+
+
+
       <div className={classes.root}>
         <Paper className={classes.paper}>
           <Grid container spacing={2} >
