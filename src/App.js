@@ -199,7 +199,7 @@ function App() {
         showLatest?
         //if showlatest is true then latest updates page will be open
         <div>
-        <div style={{width:'500px',padding:'16px',background:'white',margin:'auto',marginBottom:'5px',display:'flex',justifyContent:'center'}}>
+        <div style={{maxWidth:'500px',padding:'16px',background:'white',margin:'auto',marginBottom:'5px',textAlign:'center'}}>
           {allItems.length?<h2 style={{color:'#219CB2',fontWeight:'bolder'}}>
             Latest Updates</h2>
               :
