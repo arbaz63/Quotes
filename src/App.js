@@ -3,6 +3,7 @@ import Form from './components/Form'
 import List from './components/List'
 import {fire,database,db} from './config/Fire'
 import { Login } from './components/Login'
+import moment from 'moment';
 import './fa/css/all.css'
 import './styles/style.css'
 import image from './pics/profile.PNG'
@@ -17,7 +18,7 @@ function App() {
   const [randomPic,setRandomPic]=useState(image)
   const [isAuthenticated,setIsAuthenticated]=useState(false)
   const [views,setViews]=useState(0)
-
+  const date=moment().toString()
   //getting items from firebase
   useEffect(()=>{
    if(fire.auth().currentUser)
@@ -39,7 +40,8 @@ function App() {
                     item:doc.data().item,
                     email:doc.data().email,
                     name:doc.data().name,
-                    img:doc.data().img
+                    img:doc.data().img,
+                    date:doc.data().date
                   })
       })
       setAllItems(array)  
@@ -67,7 +69,8 @@ function App() {
     database.collection('allUsersData').add({item:newItem,
                                             email:fire.auth().currentUser.email,
                                             name:fire.auth().currentUser.displayName,
-                                            img:fire.auth().currentUser.photoURL
+                                            img:fire.auth().currentUser.photoURL,
+                                            date:date
                                           })
   }
   //remove
@@ -141,9 +144,54 @@ function App() {
       fontFamily: 'Merienda One'
     }
   }))
+  //for updating all fields at once
+  // useEffect(()=>{
+  //   database.collection('allUsersData').get()
+  //   .then((snapshot)=>{
+  //     snapshot.forEach((doc)=>{
+  //       doc.ref.update({date:date})
+  //     })
+  //   })
+  // },[])
   const classes=useStyles()
   return (
     <div className='app wrap'>
+      {/* <div>
+        <div style={{width:'500px',padding:'16px',background:'white',margin:'auto',margin:'10px 0px',display:'flex',justifyContent:'center'}}>
+          {allItems.length?<h2 style={{color:'#219CB2',fontWeight:'bolder'}}>
+            Latest Updates</h2>
+              :
+           <h3>No content here</h3>}
+        </div>
+      
+        {
+          allItems.sort((a,b)=>{
+            return a.date<b.date?1:-1
+          }).map((item,i)=>{
+            return <div key={i}>
+              <Paper className={classes.paper}>
+          <Grid container spacing={2} >
+            <Grid item container  spacing={2}>
+              <Grid item xs={2}>
+                <img src={item.img&&item.img} className={classes.img}/>
+              </Grid>
+              <Grid item xs={10}>  
+                <Typography gutterBottom style={{fontFamily: 'Merienda One'}}>
+                  {item.name}
+                </Typography>
+                <Typography gutterBottom variant="h6" style={{wordWrap:'break-word',fontFamily: 'Merienda One'}} >
+                  <i className="fa fa-quote-left fa-xs "style={{color:'gray',padding:'10px'}} aria-hidden="true"></i> 
+                    {item.item}
+                  <i className="fa fa-quote-right fa-xs "style={{color:'gray',padding:'10px'}} aria-hidden="true"></i>
+                </Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Paper>
+            </div>
+          })
+        }
+      </div> */}
       <div className={classes.root}>
         <Paper className={classes.paper}>
           <Grid container spacing={2} >
