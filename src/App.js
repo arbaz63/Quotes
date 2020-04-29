@@ -108,6 +108,7 @@ function App() {
       setRandomFromAll(opt)
       setRandomName(name)
       randomItems.splice(index,1)
+      console.log(randomItems)
       setRandomItems([...randomItems])
     }
 }
