@@ -183,7 +183,7 @@ function App() {
       <div>
                   {/* search bar */}
        
-          <input type="text" name="search" id=""value={search} onChange={(e)=>setSearch(e.target.value)}/>
+    {/*<input type="text" name="search" id=""value={search} onChange={(e)=>setSearch(e.target.value)}/>*/}
         {/* {
           searched.sort((a,b)=>{
             return a.date<b.date?1:-1
