@@ -1,0 +1,30 @@
+body{
+    color:gray;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+
+}
+.content{
+    background-color:white;
+    max-width:500px;
+    padding:16px;
+    max-height:100vh;
+    border-radius:5px;
+    margin:auto;
+}
+.wrap{
+    background: url('../pics/uet.jpg');
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    overflow: scroll;
+}
+.xbtn{
+    padding:10px 20px;
+    background:none;
+    border:none;
+    margin-top:10px;
+}
+.xbtn:hover{
+    border:0.5px solid;
+    border-radius: 20%;
+}
