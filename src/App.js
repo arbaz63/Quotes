@@ -18,6 +18,7 @@ function App() {
   const [randomPic,setRandomPic]=useState(image)
   const [isAuthenticated,setIsAuthenticated]=useState(false)
   const [views,setViews]=useState(0)
+  const [showLatest,setShowLatest]=useState(false)
   const date=moment().toString()
   //getting items from firebase
   useEffect(()=>{
@@ -102,7 +103,10 @@ function App() {
       setRandomName(name)
     }
 }
-
+  //Show latest quotes button
+  const showLatestQuotes=()=>{
+    setShowLatest(!showLatest)
+  }
   //authentication
   fire.auth().onAuthStateChanged((user)=>{
     if(user)
@@ -141,7 +145,8 @@ function App() {
       width:'100%',
       fontWeight:'900',
       color:'red',
-      fontFamily: 'Merienda One'
+      fontFamily: 'Merienda One',
+      margin:'5px'
     }
   }))
   //for updating all fields at once
@@ -156,15 +161,52 @@ function App() {
   const classes=useStyles()
   return (
     <div className='app wrap'>
-      {/* <div>
-        <div style={{width:'500px',padding:'16px',background:'white',margin:'auto',margin:'10px 0px',display:'flex',justifyContent:'center'}}>
+      
+      <div className={classes.root}>
+        <Paper className={classes.paper}>
+          <Grid container spacing={2} >
+            <Grid item container  spacing={2}>
+              <Grid item xs={2}>
+                <img src={randomPic&&randomPic} className={classes.img}/>
+              </Grid>
+              <Grid item xs={10}>  
+                <Typography gutterBottom style={{fontFamily: 'Merienda One'}}>
+                  {randomName}
+                </Typography>
+                <Typography gutterBottom variant="h6" style={{wordWrap:'break-word',fontFamily: 'Merienda One'}} >
+                  <i className="fa fa-quote-left fa-xs "style={{color:'gray',padding:'10px'}} aria-hidden="true"></i> 
+                    {randomFromAll}
+                  <i className="fa fa-quote-right fa-xs "style={{color:'gray',padding:'10px'}} aria-hidden="true"></i>
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid item container >
+              <Grid item xs={12}>
+                <Button className={classes.coloredPaper} onClick={randomQuote}>Next Quote</Button>
+                <Button className={classes.coloredPaper} onClick={showLatestQuotes}>
+                  {showLatest? <div>
+                  Show your Quotes
+                </div>:
+                  <div>Show Latest Quotes</div>
+                  }
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Paper>
+      </div>
+      {
+        showLatest?
+        //if showlatest is true then latest updates page will be open
+        <div>
+        <div style={{width:'500px',padding:'16px',background:'white',margin:'auto',marginBottom:'5px',display:'flex',justifyContent:'center'}}>
           {allItems.length?<h2 style={{color:'#219CB2',fontWeight:'bolder'}}>
             Latest Updates</h2>
               :
            <h3>No content here</h3>}
         </div>
       
-        {
+        {//first sorting then maping
           allItems.sort((a,b)=>{
             return a.date<b.date?1:-1
           }).map((item,i)=>{
@@ -191,33 +233,10 @@ function App() {
             </div>
           })
         }
-      </div> */}
-      <div className={classes.root}>
-        <Paper className={classes.paper}>
-          <Grid container spacing={2} >
-            <Grid item container  spacing={2}>
-              <Grid item xs={2}>
-                <img src={randomPic&&randomPic} className={classes.img}/>
-              </Grid>
-              <Grid item xs={10}>  
-                <Typography gutterBottom style={{fontFamily: 'Merienda One'}}>
-                  {randomName}
-                </Typography>
-                <Typography gutterBottom variant="h6" style={{wordWrap:'break-word',fontFamily: 'Merienda One'}} >
-                  <i className="fa fa-quote-left fa-xs "style={{color:'gray',padding:'10px'}} aria-hidden="true"></i> 
-                    {randomFromAll}
-                  <i className="fa fa-quote-right fa-xs "style={{color:'gray',padding:'10px'}} aria-hidden="true"></i>
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid item container >
-              <Grid item xs={12}>
-                <Button className={classes.coloredPaper} onClick={randomQuote}>Next Quote</Button>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Paper>
       </div>
+      :
+      //otherwise show add options form
+      <div>
       {
         isAuthenticated?
         <div className='content'>
@@ -225,8 +244,11 @@ function App() {
           <Form handleAddItem={handleAddItem} name={fire.auth().currentUser.displayName}/>
           <List items={items} remove={remove}/>
         </div>:
-               <Login />
+              <Login />
       }
+    </div>
+      }
+      
       
     </div>
   );
